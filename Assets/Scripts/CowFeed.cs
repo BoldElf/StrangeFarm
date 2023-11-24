@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-
-
-
-public class PlantGrowth : MonoBehaviour
+public class CowFeed : MonoBehaviour
 {
-    [SerializeField] private GameObject defaultGarden;
-    [SerializeField] private GameObject middleGarden;
-    [SerializeField] private GameObject fullGarden;
-    [SerializeField] private Pickup pickup;
 
-    [SerializeField] private GameObject SeedZero;
+    [SerializeField] private GameObject defaultDish;
+    [SerializeField] private GameObject normalDish;
+    [SerializeField] private GameObject fullDish;
+    //[SerializeField] private Pickup pickup;
+
+    [SerializeField] private GameObject PlantZero;
+
+    public event UnityAction AddMilk;
 
 
     private Player player;
@@ -23,18 +24,6 @@ public class PlantGrowth : MonoBehaviour
 
     private bool startTimer = false;
     private float timer;
-
-    
-
-    private void Start()
-    {
-        pickup.PlayerPickup += ResetAllGarden;
-    }
-
-    private void OnDestroy()
-    {
-        pickup.PlayerPickup -= ResetAllGarden;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -58,14 +47,22 @@ public class PlantGrowth : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(startTimer == true)
+        if (startTimer == true)
         {
             timer += Time.deltaTime;
             Debug.Log(timer);
         }
-        if(timer >= 10)
+
+        if (timer >= 5 && timer < 10)
         {
-            middleGarden.SetActive(false);
+            fullDish.SetActive(false);
+        }
+
+        if (timer >= 10)
+        {
+            normalDish.SetActive(false);
+            ResetAllDish();
+            AddMilk?.Invoke();
             startTimer = false;
             timer = 0;
             plantIsReady = true;
@@ -83,18 +80,17 @@ public class PlantGrowth : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) == true)
         {
-            if (playerInCollider == true && timer == 0 && plantIsReady == false)
+            if(playerInCollider == true && timer == 0)
             {
-                
-                if (player.Seed >= 1)
+                if (player.Plant >= 1)
                 {
                     StartTimer();
-                    player.MinusSeed();
+                    player.MinusPlant();
                     return;
                 }
-                if (player.Seed == 0)
+                if (player.Plant == 0)
                 {
-                    SeedZero.SetActive(true);
+                    PlantZero.SetActive(true);
                 }
             }
         }
@@ -103,14 +99,13 @@ public class PlantGrowth : MonoBehaviour
     private void StartTimer()
     {
         startTimer = true;
-        defaultGarden.SetActive(false);
+        defaultDish.SetActive(false);
     }
 
-    private void ResetAllGarden()
+    private void ResetAllDish()
     {
-        defaultGarden.SetActive(true);
-        middleGarden.SetActive(true);
-        fullGarden.SetActive(true);
-        plantIsReady = false;
+        defaultDish.SetActive(true);
+        normalDish.SetActive(true);
+        fullDish.SetActive(true);
     }
 }

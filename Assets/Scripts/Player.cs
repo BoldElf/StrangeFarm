@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     private int plant;
     public int Plant => plant;
 
+    private int milk;
+
+    public int Milk => milk;
+
     public void AddKeyHouse()
     {
         keyHouse += 1;
@@ -30,5 +34,16 @@ public class Player : MonoBehaviour
     public void MinusSeed()
     {
         seed -= 1;
+    }
+
+    public void MinusPlant()
+    {
+        plant -= 1;
+    }
+
+    public void AddMilk()
+    {
+        milk += 1;
+        Debug.Log(Milk);
     }
 }

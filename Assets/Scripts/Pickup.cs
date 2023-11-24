@@ -8,7 +8,8 @@ public enum Thing
    key,
    seed,
    plant,
-   zero
+   zero,
+   milk
 }
 
 public class Pickup : MonoBehaviour
@@ -67,8 +68,12 @@ public class Pickup : MonoBehaviour
                 {
                     player.AddPlant();
                     PlayerPickup?.Invoke();
-                    //plantGrowth.plantCollect = true;
                 }
+            }
+            if(thing == Thing.milk)
+            {
+                player.AddMilk();
+                gameObject.SetActive(false);
             }
             if (thing == Thing.zero)
             {
