@@ -14,9 +14,10 @@ public class CowFeed : MonoBehaviour
     [SerializeField] private GameObject PlantZero;
 
     public event UnityAction AddMilk;
+    //public event UnityAction MinusPlant;
 
 
-    private Player player;
+    [SerializeField]private Player player;
     private bool playerInCollider = false;
 
     private bool plantIsReady = false;
@@ -62,6 +63,7 @@ public class CowFeed : MonoBehaviour
         {
             normalDish.SetActive(false);
             ResetAllDish();
+            //AddMilk?.Invoke();
             AddMilk?.Invoke();
             startTimer = false;
             timer = 0;
@@ -86,6 +88,7 @@ public class CowFeed : MonoBehaviour
                 {
                     StartTimer();
                     player.MinusPlant();
+                    //MinusPlant?.Invoke();
                     return;
                 }
                 if (player.Plant == 0)

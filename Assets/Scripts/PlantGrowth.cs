@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-
+using UnityEngine.Events;
 
 public class PlantGrowth : MonoBehaviour
 {
     [SerializeField] private GameObject defaultGarden;
     [SerializeField] private GameObject middleGarden;
     [SerializeField] private GameObject fullGarden;
-    [SerializeField] private Pickup pickup;
+    [SerializeField] private PickupPlayer pickup;
 
     [SerializeField] private GameObject SeedZero;
 
@@ -24,7 +22,8 @@ public class PlantGrowth : MonoBehaviour
     private bool startTimer = false;
     private float timer;
 
-    
+    //public event UnityAction MinusSeed;
+
 
     private void Start()
     {
@@ -89,6 +88,8 @@ public class PlantGrowth : MonoBehaviour
                 if (player.Seed >= 1)
                 {
                     StartTimer();
+                    //player.MinusSeed();
+                    //MinusSeed.Invoke();
                     player.MinusSeed();
                     return;
                 }

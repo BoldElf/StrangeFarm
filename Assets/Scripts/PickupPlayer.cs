@@ -5,14 +5,15 @@ using UnityEngine.Events;
 
 public enum Thing
 {
-   key,
-   seed,
-   plant,
-   zero,
-   milk
+    key,
+    seed,
+    plant,
+    milk,
+    emptyMilk,
+    zero
 }
 
-public class Pickup : MonoBehaviour
+public class PickupPlayer : MonoBehaviour
 {
     [SerializeField] private Thing thing;
     [SerializeField] private GameObject button;
@@ -20,6 +21,13 @@ public class Pickup : MonoBehaviour
 
     public event UnityAction PlayerPickup;
 
+    /*
+    public event UnityAction AddMilk;
+    public event UnityAction AddKeyHouse;
+    public event UnityAction AddSeedBag;
+    public event UnityAction AddPlant;
+    public event UnityAction AddBowl;
+    */
     private Player player;
     private bool playerInCollider = false;
 
@@ -50,6 +58,7 @@ public class Pickup : MonoBehaviour
             if (thing == Thing.key)
             {
                 player.AddKeyHouse();
+                //AddKeyHouse?.Invoke();
                 button.SetActive(true);
                 thing = Thing.zero;
                 return;
@@ -57,6 +66,7 @@ public class Pickup : MonoBehaviour
             if (thing == Thing.seed)
             {
                 player.AddSeedBag();
+                //AddSeedBag?.Invoke();
                 button.SetActive(true);
                 thing = Thing.zero;
                 return;
@@ -66,13 +76,21 @@ public class Pickup : MonoBehaviour
                 PlantGrowth plantGrowth = GetComponent<PlantGrowth>();
                 if(plantGrowth != null && plantGrowth.PlantIsReady == true)
                 {
+                    //AddPlant?.Invoke();
                     player.AddPlant();
                     PlayerPickup?.Invoke();
                 }
             }
-            if(thing == Thing.milk)
+            if (thing == Thing.milk)
             {
+                //AddMilk?.Invoke();
                 player.AddMilk();
+                gameObject.SetActive(false);
+            }
+            if (thing == Thing.emptyMilk)
+            {
+                //AddBowl?.Invoke();
+                player.AddBowl();
                 gameObject.SetActive(false);
             }
             if (thing == Thing.zero)

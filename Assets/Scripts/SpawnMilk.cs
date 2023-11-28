@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnMilk : MonoBehaviour
 {
-    [SerializeField]private GameObject  milk_00;
+    [SerializeField] private GameObject milk_00;
     [SerializeField] private GameObject milk_01;
     [SerializeField] private GameObject milk_02;
 
@@ -13,6 +14,12 @@ public class SpawnMilk : MonoBehaviour
     private void Start()
     {
         cowFeed.AddMilk += spawnMilk;
+       
+    }
+
+    private void OnDestroy()
+    {
+        cowFeed.AddMilk -= spawnMilk;
     }
 
     private void spawnMilk()
@@ -32,5 +39,4 @@ public class SpawnMilk : MonoBehaviour
             milk_00.SetActive(true);
         }
     }
-
 }
