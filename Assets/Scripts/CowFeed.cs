@@ -44,6 +44,10 @@ public class CowFeed : MonoBehaviour
         {
             playerInCollider = false;
         }
+        if(PlantZero != null && playerInCollider == false)
+        {
+            PlantZero.SetActive(false);
+        }
     }
 
     private void FixedUpdate()

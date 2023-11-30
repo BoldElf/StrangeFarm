@@ -53,6 +53,10 @@ public class PlantGrowth : MonoBehaviour
         {
             playerInCollider = false;
         }
+        if(SeedZero != null)
+        {
+            SeedZero.SetActive(false);
+        }
     }
 
     private void FixedUpdate()

@@ -48,6 +48,14 @@ public class PickupPlayer : MonoBehaviour
         if (player != null)
         {
             playerInCollider = false;
+            if(button!= null)
+            {
+                button.SetActive(false);
+            }
+            if(buttonZero != null)
+            {
+                buttonZero.SetActive(false);
+            }
         }
     }
 
