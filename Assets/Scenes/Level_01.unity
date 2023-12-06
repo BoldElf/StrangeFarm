@@ -1926,6 +1926,7 @@ GameObject:
   - component: {fileID: 143576220}
   - component: {fileID: 143576219}
   - component: {fileID: 143576221}
+  - component: {fileID: 143576222}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -2015,6 +2016,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.45365953, y: 0.33978057}
   m_EdgeRadius: 0
+--- !u!114 &143576222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143576217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b606cd1e332364a80b440ef84932f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObj: {fileID: 1374008314}
+  timeAtack: 5
 --- !u!4 &143853297 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4492524717556274960, guid: a108d54c3811bb64da35f40110c47c27, type: 3}
@@ -18474,6 +18489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1762843007}
+  cat: {fileID: 143576222}
   deathPanel: {fileID: 1418750364}
 --- !u!1 &1374012201
 GameObject:

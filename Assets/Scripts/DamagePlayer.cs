@@ -7,16 +7,29 @@ using UnityEngine.Events;
 public class DamagePlayer : MonoBehaviour
 {
     [SerializeField] private Enemy enemy;
+    [SerializeField] private CatDamager cat;
     public event UnityAction PlayerMinusHealth;
 
     [SerializeField] private GameObject deathPanel;
+
+    [SerializeField] private AudioSource hitSound;
 
     private Player player;
 
     private void Start()
     {
         player = gameObject.GetComponent<Player>();
-        enemy.DamagePlayer += damagePlayer;
+
+        if(enemy != null)
+        {
+            enemy.DamagePlayer += damagePlayer;
+        }
+        
+        if(cat != null)
+        {
+            cat.CatDamage += damagePlayer;
+        }
+        
     }
 
     private void Update()
@@ -32,6 +45,11 @@ public class DamagePlayer : MonoBehaviour
         if(player.PlayerHealth >= 1)
         {
             PlayerMinusHealth?.Invoke();
+
+            if(hitSound != null)
+            {
+                hitSound.Play();
+            }
         }
         else
         {

@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     public event UnityAction<bool> EndPanel;
 
     public event UnityAction EnemyDamage;
+    public event UnityAction EnemyHitSound;
 
     private GameObject swap;
 
@@ -112,6 +113,7 @@ public class Enemy : MonoBehaviour
                     PlayerHit?.Invoke(true);
                     enemyHealth -= 1;
                     EnemyDamage?.Invoke();
+                    EnemyHitSound.Invoke();
                 }
                 if (charecterChoice == 2)
                 {
@@ -134,6 +136,7 @@ public class Enemy : MonoBehaviour
                     PlayerHit?.Invoke(true);
                     enemyHealth -= 1;
                     EnemyDamage?.Invoke();
+                    EnemyHitSound.Invoke();
                 }
                 if (charecterChoice == 0)
                 {
@@ -157,6 +160,7 @@ public class Enemy : MonoBehaviour
                     PlayerHit?.Invoke(true);
                     enemyHealth -= 1;
                     EnemyDamage?.Invoke();
+                    EnemyHitSound.Invoke();
                 }
                 if (charecterChoice == 1)
                 {
