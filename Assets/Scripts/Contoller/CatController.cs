@@ -14,8 +14,6 @@ public class CatController : MonoBehaviour
     [SerializeField] private Transform target_04;
     [SerializeField] private Transform target_05;
 
-   
-
     float timer;
     Vector3 startPosition;
 

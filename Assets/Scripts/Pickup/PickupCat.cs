@@ -9,6 +9,7 @@ public class PickupCat : MonoBehaviour
     private Player player;
     private bool catInCollider = false;
     [SerializeField] private GameObject[] zero_milk;
+    [SerializeField] private AudioSource catSound;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,6 +38,7 @@ public class PickupCat : MonoBehaviour
     {
         if(catInCollider == true)
         {
+            catSound.Play();
             gameObject.SetActive(false);
             if(zero_milk[0].activeSelf == false)
             {

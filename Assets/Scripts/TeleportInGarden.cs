@@ -14,6 +14,7 @@ public class TeleportInGarden : MonoBehaviour
     [SerializeField] private Transform TargetInHouse;
     [SerializeField] private Transform TargetInGarden;
     [SerializeField] private GameObject button_NoKey;
+    [SerializeField] private AudioSource doorAudio;
 
     private Player player;
 
@@ -59,6 +60,7 @@ public class TeleportInGarden : MonoBehaviour
                 {
                     player.transform.position = TargetInHouse.transform.position;
                 }
+                doorAudio.Play();
             }
         }
         else

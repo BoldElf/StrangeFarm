@@ -10,6 +10,8 @@ public enum Thing
     plant,
     milk,
     emptyMilk,
+    wood,
+    axe,
     zero
 }
 
@@ -18,6 +20,7 @@ public class PickupPlayer : MonoBehaviour
     [SerializeField] private Thing thing;
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject buttonZero;
+    [SerializeField] private AudioSource audioPickup;
 
     public event UnityAction PlayerPickup;
 
@@ -63,8 +66,11 @@ public class PickupPlayer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) == true && playerInCollider == true)
         {
+            
+
             if (thing == Thing.key)
             {
+                audioPickup.Play();
                 player.AddKeyHouse();
                 //AddKeyHouse?.Invoke();
                 button.SetActive(true);
@@ -73,6 +79,7 @@ public class PickupPlayer : MonoBehaviour
             }
             if (thing == Thing.seed)
             {
+                audioPickup.Play();
                 player.AddSeedBag();
                 //AddSeedBag?.Invoke();
                 button.SetActive(true);
@@ -84,6 +91,7 @@ public class PickupPlayer : MonoBehaviour
                 PlantGrowth plantGrowth = GetComponent<PlantGrowth>();
                 if(plantGrowth != null && plantGrowth.PlantIsReady == true)
                 {
+                    audioPickup.Play();
                     //AddPlant?.Invoke();
                     player.AddPlant();
                     PlayerPickup?.Invoke();
@@ -91,18 +99,49 @@ public class PickupPlayer : MonoBehaviour
             }
             if (thing == Thing.milk)
             {
+                audioPickup.Play();
                 //AddMilk?.Invoke();
                 player.AddMilk();
                 gameObject.SetActive(false);
             }
             if (thing == Thing.emptyMilk)
             {
+                audioPickup.Play();
                 //AddBowl?.Invoke();
                 player.AddBowl();
                 gameObject.SetActive(false);
             }
+            if(thing == Thing.wood)
+            {
+                audioPickup.Play();
+                if(player.Axe == true)
+                {
+                    player.AddWood();
+                    button.SetActive(true);
+                    //gameObject.SetActive(false);
+                    gameObject.transform.parent.gameObject.SetActive(false);
+                }
+                else
+                {
+                    audioPickup.Play();
+                    buttonZero.SetActive(true);
+                }
+                
+            }
+            if (thing == Thing.axe)
+            {
+                if(player.Axe == true)
+                {
+                    thing = Thing.zero;
+                    return;
+                }
+                audioPickup.Play();
+                player.AddAxe();
+                button.SetActive(true);
+            }
             if (thing == Thing.zero)
             {
+                audioPickup.Play();
                 buttonZero.SetActive(true);
             }
         }

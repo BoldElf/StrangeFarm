@@ -12,6 +12,8 @@ public class PlantGrowth : MonoBehaviour
 
     [SerializeField] private GameObject SeedZero;
 
+    [SerializeField] private AudioSource audioNoSeed;
+
 
     private Player player;
     private bool playerInCollider = false;
@@ -100,6 +102,7 @@ public class PlantGrowth : MonoBehaviour
                 if (player.Seed == 0)
                 {
                     SeedZero.SetActive(true);
+                    audioNoSeed.Play();
                 }
             }
         }

@@ -9,11 +9,19 @@ public class AudioMixerSlider : MonoBehaviour
     private const float DisabledVolume = -80;
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioSource audioS;
     [SerializeField] private string mixerParametr;
     [SerializeField] private float minimumVolume;
 
+    public static string SaveMarkMusic = "music";
+
+    private float startMixerSetting;
     private void Start()
     {
+        startMixerSetting = PlayerPrefs.GetFloat(mixerParametr, 0);
+        
+        audioMixer.SetFloat(mixerParametr, startMixerSetting);
+
         volumeSlider.SetValueWithoutNotify(GetMixerVolume());
     }
 
@@ -34,19 +42,20 @@ public class AudioMixerSlider : MonoBehaviour
         {
             mixerVolume = Mathf.Lerp(minimumVolume, 0, volumeValue);
             audioMixer.SetFloat(mixerParametr, mixerVolume);
+            PlayerPrefs.SetFloat(mixerParametr,mixerVolume );
         }
     }
 
     private float GetMixerVolume()
     {
-        audioMixer.GetFloat(mixerParametr, out float mixerVolume);
-        if(mixerVolume == DisabledVolume)
+        //audioMixer.GetFloat(mixerParametr, out float mixerVolume);
+        if (startMixerSetting == DisabledVolume)
         {
             return 0;
         }
         else
         {
-            return Mathf.Lerp(1, 0, mixerVolume / minimumVolume);
+            return Mathf.Lerp(1, 0, startMixerSetting / minimumVolume);
         }
     }
 }

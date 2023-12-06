@@ -6,20 +6,26 @@ using UnityEngine.SceneManagement;
 public class UIMainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject settingsPanel;
-    private AudioSource audioClick;
+    [SerializeField] private AudioSource audioS;
 
-    private void Start()
+    public void Play()
     {
-        audioClick = gameObject.GetComponent<AudioSource>();
+        audioS.Play();
     }
 
     public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
+
     public void Settings()
     {
         gameObject.SetActive(false);
         settingsPanel.SetActive(true);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

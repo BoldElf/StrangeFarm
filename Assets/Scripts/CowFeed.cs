@@ -9,15 +9,14 @@ public class CowFeed : MonoBehaviour
     [SerializeField] private GameObject defaultDish;
     [SerializeField] private GameObject normalDish;
     [SerializeField] private GameObject fullDish;
-    //[SerializeField] private Pickup pickup;
 
     [SerializeField] private GameObject PlantZero;
 
+    [SerializeField] private AudioSource audioButton;
+
     public event UnityAction AddMilk;
-    //public event UnityAction MinusPlant;
 
-
-    [SerializeField]private Player player;
+    private Player player;
     private bool playerInCollider = false;
 
     private bool plantIsReady = false;
@@ -98,6 +97,7 @@ public class CowFeed : MonoBehaviour
                 if (player.Plant == 0)
                 {
                     PlantZero.SetActive(true);
+                    audioButton.Play();
                 }
             }
         }

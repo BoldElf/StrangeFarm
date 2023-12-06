@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,91 +23,33 @@ public class Player : MonoBehaviour
     private int coin = 20;
     public int Coin => coin;
 
+    private int wood;
+    public int Wood => wood;
+
+    private bool axe = false;
+    public bool Axe => axe;
+
     public event UnityAction Trade;
 
-    /*
-    [SerializeField] private PickupPlayer[] pickupMilk;
-    [SerializeField] private PickupPlayer pickupKeyHouse;
-    [SerializeField] private PickupPlayer pickupSeed;
-    //[SerializeField] private PickupPlayer[] pickupPlants;
-    [SerializeField] private GameObject[] gardens;
-    //[SerializeField] private PlantGrowth[] minusSeed;
-    [SerializeField] private PickupPlayer[] pickupBowl;
-    [SerializeField] private CowFeed minusPlant;
-    [SerializeField] private Trade[] trades;
+    private DamagePlayer damagePlayer;
 
-    private PlantGrowth[] minusSeed;
-    private PickupPlayer[] pickupPlants;
+    [SerializeField]private int playerHealt;
+    public int PlayerHealth => playerHealt;
+
+    public event UnityAction DamagePlayer;
 
     private void Start()
     {
-        minusSeed = new PlantGrowth[gardens.Length];
-        pickupPlants = new PickupPlayer[gardens.Length];
-
-        for (int i = 0; i < gardens.Length; i++)
-        {
-            minusSeed[i] = gardens[i].GetComponent<PlantGrowth>();
-        }
-        for (int i = 0; i < gardens.Length; i++)
-        {
-            pickupPlants[i] = gardens[i].GetComponent<PickupPlayer>();
-        }
-        //////////////////////////////////////////////////////////////////////////////////
-
-        for (int i = 0; i < trades.Length; i++)
-        {
-            trades[i].TradeSeed += ;
-        }
-
-        for (int i = 0; i < pickupMilk.Length;i++)
-        {
-            pickupMilk[i].AddMilk += AddMilk;
-        }
-        for (int i = 0; i < pickupPlants.Length; i++)
-        {
-            pickupPlants[i].AddPlant += AddPlant;
-        }
-        for (int i = 0; i < minusSeed.Length; i++)
-        {
-            minusSeed[i].MinusSeed += MinusSeed;
-        }
-        for (int i = 0; i < pickupBowl.Length; i++)
-        {
-            pickupBowl[i].AddBowl += AddBowl;
-        }
-
-        pickupKeyHouse.AddKeyHouse += AddKeyHouse;
-        pickupSeed.AddSeedBag += AddSeedBag;
-        minusPlant.MinusPlant += MinusPlant;
-
-
+        damagePlayer = gameObject.GetComponent<DamagePlayer>();
+        damagePlayer.PlayerMinusHealth += playerMinusHealth;
     }
 
-    private void OnDestroy()
+    private void playerMinusHealth()
     {
-        for (int i = 0; i < pickupMilk.Length; i++)
-        {
-            pickupMilk[i].AddMilk -= AddMilk;
-        }
-        for (int i = 0; i < pickupPlants.Length; i++)
-        {
-            pickupPlants[i].AddPlant -= AddPlant;
-        }
-        for (int i = 0; i < minusSeed.Length; i++)
-        {
-            minusSeed[i].MinusSeed -= MinusSeed;
-        }
-        for (int i = 0; i < pickupBowl.Length; i++)
-        {
-            pickupBowl[i].AddBowl -= AddBowl;
-        }
-
-        pickupKeyHouse.AddKeyHouse -= AddKeyHouse;
-        pickupSeed.AddSeedBag -= AddSeedBag;
-        minusPlant.MinusPlant -= MinusPlant;
-
+        playerHealt -= 1;
+        DamagePlayer?.Invoke();
     }
-    */
+
     public void AddKeyHouse()
     {
         keyHouse += 1;
@@ -143,9 +86,21 @@ public class Player : MonoBehaviour
         Debug.Log(bowl);
     }
 
-    
+    public void AddWood()
+    {
+        wood += 1;
+        Debug.Log(wood);
+    }
+
+    public void AddAxe()
+    {
+        axe = true;
+        Debug.Log(axe);
+    }
+
+
     //Trade zone
-    
+
     public void SellBowl()
     {
         bowl -= 1;
