@@ -14,6 +14,29 @@ public class CatController : MonoBehaviour
     [SerializeField] private Transform target_04;
     [SerializeField] private Transform target_05;
 
+    [SerializeField] private bool flip_01;
+    [SerializeField] private bool flip_02;
+    [SerializeField] private bool flip_03;
+    [SerializeField] private bool flip_04;
+    [SerializeField] private bool flip_05;
+    [SerializeField] private bool flip_06;
+
+    [SerializeField] private float timer_01;
+
+    [SerializeField] private float timer_02;
+
+
+    [SerializeField]private float timer_03;
+
+
+    [SerializeField] private float timer_04;
+
+
+    [SerializeField] private float timer_05;
+
+
+    [SerializeField] private float timer_end;
+
     float timer;
     Vector3 startPosition;
 
@@ -33,33 +56,87 @@ public class CatController : MonoBehaviour
     {
         startPosition = transform.position;
 
-        if (timer >= 6 & timer < 10)
+        if (timer >= timer_01 & timer < timer_02)
         {
             animator.SetBool("AnimOn", true);
+
+            if(flip_01 == true)
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+
             transform.position = Vector2.MoveTowards(transform.position, target_01.transform.position, 1.0f * Time.deltaTime);
         }
 
-        if (timer >= 10 & timer < 15)
+        if (timer >= timer_02 & timer < timer_03)
         {
-            sprite.flipX = true;
+            if (flip_02 == true)
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+            //sprite.flipX = true;
             transform.position = Vector2.MoveTowards(transform.position, target_02.transform.position, 1.0f * Time.deltaTime);
         }
-        if (timer >= 15 & timer < 20)
+        if (timer >= timer_03 & timer < timer_04)
         {
+            if (flip_03 == true)
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+
             transform.position = Vector2.MoveTowards(transform.position, target_03.transform.position, 1.0f * Time.deltaTime);
         }
-        if (timer >= 25 & timer < 30)
+        if (timer >= timer_04 & timer < timer_05)
         {
+            if (flip_04 == true)
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+
             transform.position = Vector2.MoveTowards(transform.position, target_04.transform.position, 1.0f * Time.deltaTime);
         }
-        if (timer >= 30 & timer < 35)
+        if (timer >= timer_05 & timer < timer_end)
         {
+            if (flip_05 == true)
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+
             transform.position = Vector2.MoveTowards(transform.position, target_05.transform.position, 1.0f * Time.deltaTime);
         }
-        if (timer >= 35)
+        if (timer >= timer_end)
         {
+            if (flip_06 == true)
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+
             timer = 0;
-            sprite.flipX = false;
+            //sprite.flipX = false;
         }
 
         if (startPosition == transform.position)

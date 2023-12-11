@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SpawnMilk : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class SpawnMilk : MonoBehaviour
     [SerializeField] private GameObject milk_02;
 
     [SerializeField] private CowFeed cowFeed;
+
 
     private void Start()
     {

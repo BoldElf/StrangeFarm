@@ -29,6 +29,18 @@ public class Player : MonoBehaviour
     private bool axe = false;
     public bool Axe => axe;
 
+    private bool fhishingRod = false;
+    public bool FhishingRod => fhishingRod;
+
+    private int bait;
+    public int Bait => bait;
+
+    private int fish;
+    public int Fish => fish;
+
+    private int bone;
+    public int Bone => bone;
+
     public event UnityAction Trade;
 
     private DamagePlayer damagePlayer;
@@ -98,6 +110,41 @@ public class Player : MonoBehaviour
         Debug.Log(axe);
     }
 
+    public void AddFish()
+    {
+        fish += 1;
+        Debug.Log(fish);
+    }
+
+    public void MinusFish()
+    {
+        fish -= 1;
+    }
+
+    public void AddBone()
+    {
+        bone += 1;
+        Debug.Log(bone);
+    }
+
+    public void AddFhishingRod()
+    {
+        fhishingRod = true;
+    }
+
+    public void AddFhishingBait()
+    {
+        bait += 1;
+    }
+    public void MinusBait()
+    {
+        bait -= 1;
+    }
+
+    public void MinusBone()
+    {
+        bone -= 1;
+    }
 
     //Trade zone
 

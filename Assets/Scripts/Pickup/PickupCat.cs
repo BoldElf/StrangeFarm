@@ -6,16 +6,15 @@ using UnityEngine.Events;
 public class PickupCat : MonoBehaviour
 {
     private CatController cat;
-    private Player player;
     private bool catInCollider = false;
-    [SerializeField] private GameObject[] zero_milk;
+
+    [SerializeField] private GameObject mainObject;
+
+    [SerializeField] private GameObject[] zero_Object;
     [SerializeField] private AudioSource catSound;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        player = collision.transform.GetComponent<Player>();
-        if (player != null) return;
-
         cat = collision.transform.GetComponent<CatController>();
 
         if (cat != null)
@@ -36,18 +35,18 @@ public class PickupCat : MonoBehaviour
 
     private void Update()
     {
-        if(catInCollider == true)
+        if(catInCollider == true && mainObject.activeSelf == true)
         {
             catSound.Play();
-            gameObject.SetActive(false);
-            if(zero_milk[0].activeSelf == false)
+            mainObject.SetActive(false);
+            if(zero_Object[0].activeSelf == false)
             {
-                zero_milk[0].SetActive(true);
+                zero_Object[0].SetActive(true);
                 return;
             }
-            if (zero_milk[0].activeSelf == true && zero_milk[1].activeSelf == false)
+            if (zero_Object[0].activeSelf == true && zero_Object[1].activeSelf == false)
             {
-                zero_milk[1].SetActive(true);
+                zero_Object[1].SetActive(true); 
             }
             
         }

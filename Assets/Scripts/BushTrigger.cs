@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Trade : MonoBehaviour
+public class BushTrigger : MonoBehaviour
 {
-    [SerializeField] private GameObject TradeMenu;
-
     private Player player;
     private bool playerInCollider = false;
 
-    public event UnityAction playerExit;
+    [SerializeField] private Collider2D chest;
+    [SerializeField] private AudioSource soundTrigger;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,24 +26,17 @@ public class Trade : MonoBehaviour
 
         if (player != null)
         {
-            playerExit?.Invoke();
             playerInCollider = false;
         }
     }
 
     private void Update()
     {
-        if(playerInCollider == true)
+        if (playerInCollider == true && Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.E) == true)
-            {
-                TradeMenu.SetActive(true);
-            }
+            chest.enabled = true;
+            soundTrigger.Play();
+            transform.parent.gameObject.SetActive(false);
         }
-        if(playerInCollider == false)
-        {
-            TradeMenu.SetActive(false);
-        }
-        
     }
 }

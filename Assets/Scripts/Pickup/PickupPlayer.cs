@@ -12,6 +12,10 @@ public enum Thing
     emptyMilk,
     wood,
     axe,
+    fhish,
+    bone,
+    fhishingRod,
+    bait,
     zero
 }
 
@@ -138,6 +142,34 @@ public class PickupPlayer : MonoBehaviour
                 audioPickup.Play();
                 player.AddAxe();
                 button.SetActive(true);
+            }
+            if(thing == Thing.fhish)
+            {
+                audioPickup.Play();
+                player.AddFish();
+                gameObject.SetActive(false);
+            }
+            if (thing == Thing.bone)
+            {
+                audioPickup.Play();
+                player.AddBone();
+                gameObject.SetActive(false);
+            }
+            if(thing == Thing.fhishingRod)
+            {
+                player.AddFhishingRod();
+                button.SetActive(true);
+                thing = Thing.zero;
+            }
+            if(thing == Thing.bait)
+            {
+                for(int i = 0; i < 4; i++)
+                {
+                    player.AddFhishingBait();
+                }
+                thing = Thing.zero;
+                button.SetActive(true);
+                
             }
             if (thing == Thing.zero)
             {
