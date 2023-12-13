@@ -13,7 +13,7 @@ public class AudioMixerSlider : MonoBehaviour
     [SerializeField] private string mixerParametr;
     [SerializeField] private float minimumVolume;
 
-    public static string SaveMarkMusic = "music";
+    //public static string SaveMarkMusic = "music";
 
     private float startMixerSetting;
     private void Start()

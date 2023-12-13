@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResolutionSettings : MonoBehaviour
 {
+    [SerializeField] private Text text;
+
     [SerializeField]
     private Vector2Int[] avalibalResolutions = new Vector2Int[]
     {
@@ -17,6 +20,11 @@ public class ResolutionSettings : MonoBehaviour
 
     public  bool isMinValue { get => currentResolutionIndex == 0; }
     public  bool isMaxValue { get => currentResolutionIndex == avalibalResolutions.Length - 1; }
+
+    private void Update()
+    {
+        GetValue();
+    }
 
     public  void SetNextValue()
     {
@@ -32,9 +40,10 @@ public class ResolutionSettings : MonoBehaviour
             currentResolutionIndex--;
         }
     }
-    public  object GetValue()
+    public void GetValue()
     {
-        return avalibalResolutions[currentResolutionIndex];
+        //return avalibalResolutions[currentResolutionIndex];
+        text.text = avalibalResolutions[currentResolutionIndex].ToString();
     }
 
     public  string GetStringValue()

@@ -16,7 +16,9 @@ public class SpawnMilk : MonoBehaviour
     private void Start()
     {
         cowFeed.AddMilk += spawnMilk;
-       
+        milk_00.SetActive(false);
+        milk_01.SetActive(false);
+        milk_02.SetActive(false);
     }
 
     private void OnDestroy()

@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    private int keyHouse;
-    public int KeyHouse => keyHouse;
+    private bool keyHouse;
+    public bool KeyHouse => keyHouse;
     private int seed;
     public int Seed => seed;
 
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 
     public void AddKeyHouse()
     {
-        keyHouse += 1;
+        keyHouse = true;
     }
 
     public void AddSeedBag()

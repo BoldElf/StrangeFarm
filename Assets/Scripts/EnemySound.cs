@@ -17,7 +17,7 @@ public class EnemySound : MonoBehaviour
     }
     private void OnDestroy()
     {
-        enemy.EnemyHitSound -= SoundPlay;
+        //enemy.EnemyHitSound -= SoundPlay;
     }
 
     private void SoundPlay()

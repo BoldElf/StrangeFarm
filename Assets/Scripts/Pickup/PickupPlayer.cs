@@ -19,12 +19,16 @@ public enum Thing
     zero
 }
 
-public class PickupPlayer : MonoBehaviour
+public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
 {
     [SerializeField] private Thing thing;
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject buttonZero;
     [SerializeField] private AudioSource audioPickup;
+
+    [SerializeField]private UINotification UINotification;
+
+    public void Construct(UINotification obj) => UINotification = obj;
 
     public event UnityAction PlayerPickup;
 
@@ -37,6 +41,18 @@ public class PickupPlayer : MonoBehaviour
     */
     private Player player;
     private bool playerInCollider = false;
+
+    private void Start()
+    {
+        /*
+        if(UINotificationPanel != null)
+        {
+            UINotification = UINotificationPanel.gameObject.GetComponent<UINotification>();
+        }
+        */
+        //UINotification.setUi("+1", "key"); !!!!
+        UINotification.setUi("+1", "idea");
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -76,8 +92,8 @@ public class PickupPlayer : MonoBehaviour
             {
                 audioPickup.Play();
                 player.AddKeyHouse();
-                //AddKeyHouse?.Invoke();
                 button.SetActive(true);
+                UINotification.setUi("+1","key");
                 thing = Thing.zero;
                 return;
             }
@@ -85,8 +101,8 @@ public class PickupPlayer : MonoBehaviour
             {
                 audioPickup.Play();
                 player.AddSeedBag();
-                //AddSeedBag?.Invoke();
                 button.SetActive(true);
+                UINotification.setUi("+4", "seed");
                 thing = Thing.zero;
                 return;
             }
@@ -96,7 +112,7 @@ public class PickupPlayer : MonoBehaviour
                 if(plantGrowth != null && plantGrowth.PlantIsReady == true)
                 {
                     audioPickup.Play();
-                    //AddPlant?.Invoke();
+                    UINotification.setUi("+1", "plant");
                     player.AddPlant();
                     PlayerPickup?.Invoke();
                 }
@@ -104,14 +120,14 @@ public class PickupPlayer : MonoBehaviour
             if (thing == Thing.milk)
             {
                 audioPickup.Play();
-                //AddMilk?.Invoke();
+                UINotification.setUi("+1", "milk");
                 player.AddMilk();
                 gameObject.SetActive(false);
             }
             if (thing == Thing.emptyMilk)
             {
                 audioPickup.Play();
-                //AddBowl?.Invoke();
+                UINotification.setUi("+1", "container");
                 player.AddBowl();
                 gameObject.SetActive(false);
             }
@@ -121,8 +137,8 @@ public class PickupPlayer : MonoBehaviour
                 if(player.Axe == true)
                 {
                     player.AddWood();
+                    UINotification.setUi("+1", "wood");
                     button.SetActive(true);
-                    //gameObject.SetActive(false);
                     gameObject.transform.parent.gameObject.SetActive(false);
                 }
                 else
@@ -140,23 +156,28 @@ public class PickupPlayer : MonoBehaviour
                     return;
                 }
                 audioPickup.Play();
+                UINotification.setUi("+1", "axe");
                 player.AddAxe();
                 button.SetActive(true);
             }
             if(thing == Thing.fhish)
             {
                 audioPickup.Play();
+                UINotification.setUi("+1", "fhish");
                 player.AddFish();
                 gameObject.SetActive(false);
             }
             if (thing == Thing.bone)
             {
                 audioPickup.Play();
+                UINotification.setUi("+1", "bone");
                 player.AddBone();
                 gameObject.SetActive(false);
             }
             if(thing == Thing.fhishingRod)
             {
+                audioPickup.Play();
+                UINotification.setUi("+1", "rod");
                 player.AddFhishingRod();
                 button.SetActive(true);
                 thing = Thing.zero;
@@ -167,6 +188,7 @@ public class PickupPlayer : MonoBehaviour
                 {
                     player.AddFhishingBait();
                 }
+                UINotification.setUi("+4", "bait");
                 thing = Thing.zero;
                 button.SetActive(true);
                 

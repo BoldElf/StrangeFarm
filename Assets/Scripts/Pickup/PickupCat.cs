@@ -13,6 +13,14 @@ public class PickupCat : MonoBehaviour
     [SerializeField] private GameObject[] zero_Object;
     [SerializeField] private AudioSource catSound;
 
+    private void Start()
+    {
+        for(int i = 0;i< zero_Object.Length;i++)
+        {
+            zero_Object[i].SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         cat = collision.transform.GetComponent<CatController>();

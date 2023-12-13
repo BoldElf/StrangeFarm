@@ -22,6 +22,14 @@ public class Fishing : MonoBehaviour
     private bool spawn;
     private float timer;
 
+    private void Start()
+    {
+        for (int i = 0; i < fhishingPlaces.Length; i++)
+        {
+            fhishingPlaces[i].SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         player = collision.transform.GetComponent<Player>();

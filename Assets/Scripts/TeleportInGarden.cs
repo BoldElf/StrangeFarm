@@ -38,7 +38,7 @@ public class TeleportInGarden : MonoBehaviour
         {
             playerInCollider = false;
         }
-        if(player.KeyHouse == 0 && button_NoKey != null)
+        if(player.KeyHouse == true && button_NoKey != null)
         {
             button_NoKey.SetActive(false);
         }
@@ -48,7 +48,7 @@ public class TeleportInGarden : MonoBehaviour
     {
         if (player == null) return;
 
-        if(player.KeyHouse == 1)
+        if(player.KeyHouse == true)
         {
             if (Input.GetKeyDown(KeyCode.E) == true && playerInCollider == true)
             {
