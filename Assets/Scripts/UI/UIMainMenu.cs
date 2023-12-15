@@ -35,8 +35,11 @@ public class UIMainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        PlayerPrefs.DeleteKey("1");
+        PlayerPrefs.DeleteKey("2");
         SceneManager.LoadScene(1);
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
+        
     }
 
     //private int abc = 0;

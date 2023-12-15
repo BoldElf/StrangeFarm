@@ -52,14 +52,23 @@ public class UIInventory : MonoBehaviour
                 text[2].text = "No";
             }
 
-            text[3].text = player.Milk.ToString();
-            text[4].text = player.Bowl.ToString();
-            text[5].text = player.Wood.ToString();
-            text[6].text = player.Seed.ToString();
-            text[7].text = player.Fish.ToString();
-            text[8].text = player.Bone.ToString();
-            text[9].text = player.Plant.ToString();
-            text[10].text = player.Bait.ToString();
+            if (player.Scissors == true)
+            {
+                text[3].text = "Yes";
+            }
+            else
+            {
+                text[3].text = "No";
+            }
+
+            text[4].text = player.Milk.ToString();
+            text[5].text = player.Bowl.ToString();
+            text[6].text = player.Wood.ToString();
+            text[7].text = player.Seed.ToString();
+            text[8].text = player.Fish.ToString();
+            text[9].text = player.Bone.ToString();
+            text[10].text = player.Plant.ToString();
+            text[11].text = player.Bait.ToString();
         }
         else
         {

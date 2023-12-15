@@ -9,6 +9,7 @@ public class BushTrigger : MonoBehaviour
 
     [SerializeField] private Collider2D chest;
     [SerializeField] private AudioSource soundTrigger;
+    [SerializeField] private GameObject button;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,6 +28,7 @@ public class BushTrigger : MonoBehaviour
         if (player != null)
         {
             playerInCollider = false;
+            button.SetActive(false);
         }
     }
 
@@ -34,9 +36,17 @@ public class BushTrigger : MonoBehaviour
     {
         if (playerInCollider == true && Input.GetKeyDown(KeyCode.E))
         {
-            chest.enabled = true;
-            soundTrigger.Play();
-            transform.parent.gameObject.SetActive(false);
+            if(player.Scissors == true)
+            {
+                chest.enabled = true;
+                soundTrigger.Play();
+                transform.parent.gameObject.SetActive(false);
+            }
+            else
+            {
+                button.SetActive(true);
+            }
+            
         }
     }
 }

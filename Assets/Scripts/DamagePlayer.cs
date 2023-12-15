@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class DamagePlayer : MonoBehaviour
 {
     [SerializeField] private Enemy enemy;
-    [SerializeField] private CatDamager cat;
+    [SerializeField] private CatDamager[] cat;
     public event UnityAction PlayerMinusHealth;
 
     [SerializeField] private GameObject deathPanel;
@@ -27,7 +27,11 @@ public class DamagePlayer : MonoBehaviour
         
         if(cat != null)
         {
-            cat.CatDamage += damagePlayer;
+            for(int i = 0; i < cat.Length; i++)
+            {
+                cat[i].CatDamage += damagePlayer;
+            }
+            
         }
         
     }

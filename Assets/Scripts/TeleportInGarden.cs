@@ -37,10 +37,11 @@ public class TeleportInGarden : MonoBehaviour
         if (player != null)
         {
             playerInCollider = false;
+            button_NoKey.SetActive(false);
         }
         if(player.KeyHouse == true && button_NoKey != null)
         {
-            button_NoKey.SetActive(false);
+            //button_NoKey.SetActive(false);
         }
     }
 

@@ -18,6 +18,7 @@ public class AudioMixerSlider : MonoBehaviour
     private float startMixerSetting;
     private void Start()
     {
+        Debug.Log(PlayerPrefs.GetFloat(mixerParametr, 0));
         startMixerSetting = PlayerPrefs.GetFloat(mixerParametr, 0);
         
         audioMixer.SetFloat(mixerParametr, startMixerSetting);

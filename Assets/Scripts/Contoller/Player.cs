@@ -41,6 +41,9 @@ public class Player : MonoBehaviour
     private int bone;
     public int Bone => bone;
 
+    private bool scissors;
+    public bool Scissors => scissors;
+
     public event UnityAction Trade;
 
     private DamagePlayer damagePlayer;
@@ -65,6 +68,11 @@ public class Player : MonoBehaviour
     public void AddKeyHouse()
     {
         keyHouse = true;
+    }
+
+    public void AddScissors()
+    {
+        scissors = true;
     }
 
     public void AddSeedBag()

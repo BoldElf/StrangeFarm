@@ -16,6 +16,7 @@ public enum Thing
     bone,
     fhishingRod,
     bait,
+    scissors,
     zero
 }
 
@@ -192,6 +193,15 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 thing = Thing.zero;
                 button.SetActive(true);
                 
+            }
+            if(thing == Thing.scissors)
+            {
+                audioPickup.Play();
+                UINotification.setUi("+1", "scissors");
+                player.AddScissors();
+                button.SetActive(true);
+                thing = Thing.zero;
+
             }
             if (thing == Thing.zero)
             {

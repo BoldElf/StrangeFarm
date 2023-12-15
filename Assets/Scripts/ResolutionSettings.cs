@@ -21,6 +21,11 @@ public class ResolutionSettings : MonoBehaviour
     public  bool isMinValue { get => currentResolutionIndex == 0; }
     public  bool isMaxValue { get => currentResolutionIndex == avalibalResolutions.Length - 1; }
 
+    private void Start()
+    {
+        Load();
+    }
+
     private void Update()
     {
         GetValue();
@@ -43,7 +48,7 @@ public class ResolutionSettings : MonoBehaviour
     public void GetValue()
     {
         //return avalibalResolutions[currentResolutionIndex];
-        text.text = avalibalResolutions[currentResolutionIndex].ToString();
+        text.text = GetStringValue();
     }
 
     public  string GetStringValue()
@@ -54,6 +59,12 @@ public class ResolutionSettings : MonoBehaviour
     public  void Applay()
     {
         Screen.SetResolution(avalibalResolutions[currentResolutionIndex].x, avalibalResolutions[currentResolutionIndex].y, true);
+        PlayerPrefs.SetInt("settings", currentResolutionIndex);
+    }
 
+    private void Load()
+    {
+        currentResolutionIndex = PlayerPrefs.GetInt("settings",3);
+        Screen.SetResolution(avalibalResolutions[currentResolutionIndex].x, avalibalResolutions[currentResolutionIndex].y, true);
     }
 }
