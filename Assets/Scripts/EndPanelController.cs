@@ -16,7 +16,7 @@ public class EndPanelController : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerPrefs.GetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), 100) <= globalTimer.ToOpenContinue)
+        if (PlayerPrefs.GetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), 100) <= globalTimer.MinimumTime)
         {
             buttonOn?.Invoke();
         }

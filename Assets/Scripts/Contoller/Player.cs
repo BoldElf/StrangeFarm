@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private int bowl;
     public int Bowl => bowl;
 
-    private int coin = 20;
+    private int coin;
     public int Coin => coin;
 
     private int wood;

@@ -15,6 +15,9 @@ public class Fishing : MonoBehaviour
 
     [SerializeField] private GameObject[] fhishingPlaces;
 
+    [SerializeField] private AudioSource castFishingSound;
+    [SerializeField] private AudioSource spawnFishSound;
+
     public event UnityAction<bool> fhishingOnOrOff;
 
     private GameObject FishingCharector;
@@ -65,6 +68,7 @@ public class Fishing : MonoBehaviour
 
                 if(spawn == false)
                 {
+                    castFishingSound.Play();
                     spawnPrefab();
                     startTimer();
                 }
@@ -100,6 +104,7 @@ public class Fishing : MonoBehaviour
 
     private void spawnFish()
     {
+        spawnFishSound.Play();
         player.MinusBait();
         for(int i = 0; i < fhishingPlaces.Length; i++)
         {

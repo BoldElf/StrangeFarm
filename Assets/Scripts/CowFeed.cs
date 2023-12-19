@@ -13,6 +13,7 @@ public class CowFeed : MonoBehaviour
     [SerializeField] private GameObject PlantZero;
 
     [SerializeField] private AudioSource audioButton;
+    [SerializeField] private AudioSource audioKorm;
 
     public event UnityAction AddMilk;
 
@@ -89,6 +90,7 @@ public class CowFeed : MonoBehaviour
             {
                 if (player.Plant >= 1)
                 {
+                    audioKorm.Play();
                     StartTimer();
                     player.MinusPlant();
                     //MinusPlant?.Invoke();

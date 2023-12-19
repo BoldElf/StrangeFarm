@@ -11,7 +11,7 @@ public class SpawnMilk : MonoBehaviour
     [SerializeField] private GameObject milk_02;
 
     [SerializeField] private CowFeed cowFeed;
-
+    [SerializeField] private AudioSource milkAudio;
 
     private void Start()
     {
@@ -28,7 +28,8 @@ public class SpawnMilk : MonoBehaviour
 
     private void spawnMilk()
     {
-        if(milk_00.activeSelf == true && milk_01.activeSelf == false)
+        milkAudio.Play();
+        if (milk_00.activeSelf == true && milk_01.activeSelf == false)
         {
             milk_01.SetActive(true);
             return;

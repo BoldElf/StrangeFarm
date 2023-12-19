@@ -12,6 +12,8 @@ public class Trade : MonoBehaviour
 
     public event UnityAction playerExit;
 
+    [SerializeField] private AudioSource tradeSound;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         player = collision.transform.GetComponent<Player>();
@@ -39,6 +41,7 @@ public class Trade : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) == true)
             {
+                tradeSound.Play();
                 TradeMenu.SetActive(true);
             }
         }

@@ -20,6 +20,8 @@ public class MoveLostPart : MonoBehaviour
     public event UnityAction BridgeReset;
     public event UnityAction SetActiveButton;
 
+    [SerializeField] private GameObject soundMove;
+
     private void Start()
     {
         enabled = false;
@@ -40,7 +42,6 @@ public class MoveLostPart : MonoBehaviour
 
     private void Bridge_MoveBridge()
     {
-
         SetActiveButton?.Invoke();
 
         enabled = true;
@@ -50,12 +51,14 @@ public class MoveLostPart : MonoBehaviour
     {
         if(moveToStart == false)
         {
+            soundMove.SetActive(true);
             lostPark.transform.position = Vector2.MoveTowards(lostPark.transform.position, positionToMove.transform.position, 1.0f * Time.deltaTime);
         }
         
         if(lostPark.transform.position == positionToMove.transform.position)
         {
-            for(int i = 0; i < bridgeCollider.Length;i++)
+            soundMove.SetActive(false);
+            for (int i = 0; i < bridgeCollider.Length;i++)
             {
                 bridgeCollider[i].enabled = false;
             }
@@ -73,11 +76,12 @@ public class MoveLostPart : MonoBehaviour
 
         if(timer >= value)
         {
-
+            soundMove.SetActive(true);
             lostPark.transform.position = Vector2.MoveTowards(lostPark.transform.position, startPosition.transform.position, 1.0f * Time.deltaTime);
 
             if(lostPark.transform.position == startPosition.transform.position && moveToStart == true)
             {
+                soundMove.SetActive(false);
                 timer = 0;
                 BridgeReset?.Invoke();
                 moveToStart = false;

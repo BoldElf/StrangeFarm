@@ -13,6 +13,8 @@ public class PlantGrowth : MonoBehaviour
     [SerializeField] private GameObject SeedZero;
 
     [SerializeField] private AudioSource audioNoSeed;
+    [SerializeField] private AudioSource plantAudio;
+    [SerializeField] private AudioSource plantSpawnAudio;
 
 
     private Player player;
@@ -70,6 +72,7 @@ public class PlantGrowth : MonoBehaviour
         }
         if(timer >= 10)
         {
+            plantSpawnAudio.Play();
             middleGarden.SetActive(false);
             startTimer = false;
             timer = 0;
@@ -93,6 +96,7 @@ public class PlantGrowth : MonoBehaviour
                 
                 if (player.Seed >= 1)
                 {
+                    plantAudio.Play();
                     StartTimer();
                     //player.MinusSeed();
                     //MinusSeed.Invoke();

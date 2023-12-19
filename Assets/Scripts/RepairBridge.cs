@@ -5,6 +5,7 @@ using UnityEngine;
 public class RepairBridge : MonoBehaviour
 {
     private Player player;
+    private PlayerContoller playerContoller;
     private bool playerInCollider = false;
 
     [SerializeField] private GameObject buttonNoWood; 
@@ -12,10 +13,17 @@ public class RepairBridge : MonoBehaviour
     [SerializeField] private GameObject brokenBridge;
     [SerializeField] private GameObject bridge;
 
+    [SerializeField] private AudioSource repairSound;
+
+    [SerializeField] private int timeToRepair; 
+
+    private float timer;
+    private bool startRepair;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         player = collision.transform.GetComponent<Player>();
-
+        playerContoller = collision.transform.GetComponent<PlayerContoller>();
         if (player != null)
         {
             playerInCollider = true;
@@ -41,8 +49,13 @@ public class RepairBridge : MonoBehaviour
             {
                 if(player.Wood >= 3)
                 {
+                    startRepair = true;
+                    repairSound.Play();
+                    /*
+                    timer = 0;
                     brokenBridge.SetActive(false);
                     bridge.SetActive(true);
+                    */
                 }
                 if(player.Wood < 3)
                 {
@@ -50,5 +63,24 @@ public class RepairBridge : MonoBehaviour
                 }
             }
         }
+       
+        if(startRepair == true)
+        {
+            timer += Time.deltaTime;
+            playerContoller.enabled = false;
+            if (timer >= timeToRepair)
+            {
+                repair();
+            }
+        }
+    }
+
+    private void repair()
+    {
+        playerContoller.enabled = true;
+        startRepair = false;
+        timer = 0;
+        brokenBridge.SetActive(false);
+        bridge.SetActive(true);
     }
 }

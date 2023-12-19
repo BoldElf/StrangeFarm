@@ -17,10 +17,12 @@ public class ButtonBridge : MonoBehaviour
 
     [SerializeField] private MoveLostPart lostPart;
 
+    [SerializeField] private AudioSource buttonSound;
+
     
 
     public event UnityAction MoveBridge;
-    public event UnityAction NoMoveBridge;
+    //public event UnityAction NoMoveBridge;
 
     private void Start()
     {
@@ -66,6 +68,7 @@ public class ButtonBridge : MonoBehaviour
 
     private void setActive()
     {
+        buttonSound.Play();
         playerOn = true;
         buttonOff.SetActive(false);
         buttonOn.SetActive(true);
