@@ -107,6 +107,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                     UINotification.setUi("+1", "plant");
                     player.AddPlant();
                     PlayerPickup?.Invoke();
+                    return;
                 }
             }
             if (thing == Thing.milk)
@@ -115,6 +116,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 UINotification.setUi("+1", "milk");
                 player.AddMilk();
                 gameObject.SetActive(false);
+                return;
             }
             if (thing == Thing.emptyMilk)
             {
@@ -122,6 +124,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 UINotification.setUi("+1", "container");
                 player.AddBowl();
                 gameObject.SetActive(false);
+                return;
             }
             if(thing == Thing.wood)
             {
@@ -132,11 +135,13 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                     UINotification.setUi("+1", "wood");
                     button.SetActive(true);
                     gameObject.transform.parent.gameObject.SetActive(false);
+                    return;
                 }
                 else
                 {
                     audioPickup.Play();
                     buttonZero.SetActive(true);
+                    return;
                 }
                 
             }
@@ -151,6 +156,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 UINotification.setUi("+1", "axe");
                 player.AddAxe();
                 button.SetActive(true);
+                return;
             }
             if(thing == Thing.fhish)
             {
@@ -158,6 +164,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 UINotification.setUi("+1", "fhish");
                 player.AddFish();
                 gameObject.SetActive(false);
+                return;
             }
             if (thing == Thing.bone)
             {
@@ -165,6 +172,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 UINotification.setUi("+1", "bone");
                 player.AddBone();
                 gameObject.SetActive(false);
+                return;
             }
             if(thing == Thing.fhishingRod)
             {
@@ -173,6 +181,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 player.AddFhishingRod();
                 button.SetActive(true);
                 thing = Thing.zero;
+                return;
             }
             if(thing == Thing.bait)
             {
@@ -183,7 +192,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 UINotification.setUi("+4", "bait");
                 thing = Thing.zero;
                 button.SetActive(true);
-                
+                return;
             }
             if(thing == Thing.scissors)
             {
@@ -192,12 +201,13 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 player.AddScissors();
                 button.SetActive(true);
                 thing = Thing.zero;
-
+                return;
             }
             if (thing == Thing.zero)
             {
                 audioPickup.Play();
                 buttonZero.SetActive(true);
+                return;
             }
         }
 

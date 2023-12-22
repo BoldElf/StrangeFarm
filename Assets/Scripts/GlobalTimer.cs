@@ -24,6 +24,7 @@ public class GlobalTimer : MonoBehaviour
 
     [SerializeField] private float normTime;
     [SerializeField] private float maxTime;
+    public float MaxTimer => maxTime;
 
     [SerializeField] private int maxPlayerCoin;
     public int MaxPlayerCoin => maxPlayerCoin;
@@ -54,7 +55,7 @@ public class GlobalTimer : MonoBehaviour
             Time.timeScale = 0;
             textSecond.text = StringTime.SecondToTimeString(timer);
 
-            if(PlayerPrefs.GetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), 100) > timer && minmumTime >= timer)
+            if(PlayerPrefs.GetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), 100) > timer && maxTime >= timer)
             {
                 PlayerPrefs.SetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), timer);
             }
@@ -94,11 +95,26 @@ public class GlobalTimer : MonoBehaviour
     public void setActiveText()
     {
         endPanel.SetActive(true);
-        Time.timeScale = 0;
         textSecond.text = StringTime.SecondToTimeString(timer);
-        if (PlayerPrefs.GetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), 100) > timer)
+
+        if (PlayerPrefs.GetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), 0) == 0)
         {
             PlayerPrefs.SetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), timer);
         }
+        else
+        {
+            if (PlayerPrefs.GetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), 0) < timer)
+            {
+                PlayerPrefs.SetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), timer);
+            }
+        }
+            
+        /*
+        if (PlayerPrefs.GetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), 0) < timer)
+        {
+            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), timer);
+        }
+        */
+        Time.timeScale = 0;
     }
 }

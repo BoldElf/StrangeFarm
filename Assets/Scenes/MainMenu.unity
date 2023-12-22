@@ -2628,6 +2628,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112ac13bf037796419265c1898c12c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalTimer:
+  - {fileID: 3281282515049050396, guid: 1f3ec843723c6014b8a940f94d7dca09, type: 3}
+  - {fileID: 210825262692702005, guid: 2f253e757de877242a0aca5bfc2b3c3e, type: 3}
   settingsPanel: {fileID: 704098231}
   audioS: {fileID: 1895980776}
 --- !u!1 &1542429233
