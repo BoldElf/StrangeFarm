@@ -45,6 +45,7 @@ public class Trade : MonoBehaviour
                 TradeMenu.SetActive(true);
             }
         }
+
         if(playerInCollider == false)
         {
             TradeMenu.SetActive(false);

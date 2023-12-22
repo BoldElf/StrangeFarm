@@ -55,7 +55,6 @@ public class CowFeed : MonoBehaviour
         if (startTimer == true)
         {
             timer += Time.deltaTime;
-            Debug.Log(timer);
         }
 
         if (timer >= 5 && timer < 10)

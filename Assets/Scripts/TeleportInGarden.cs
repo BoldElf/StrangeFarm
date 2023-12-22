@@ -16,6 +16,8 @@ public class TeleportInGarden : MonoBehaviour
     [SerializeField] private GameObject button_NoKey;
     [SerializeField] private AudioSource doorAudio;
 
+    [SerializeField] private AudioSource notification;
+
     private Player player;
 
     private bool playerInCollider = false;
@@ -68,6 +70,7 @@ public class TeleportInGarden : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) == true && playerInCollider == true)
             {
+                notification.Play();
                 button_NoKey.SetActive(true);
             }    
         }

@@ -45,7 +45,6 @@ public class UIBattleFight : MonoBehaviour
         if (enemy.gameObject.activeSelf == false && endPanel.activeSelf == true)
         {
             timer += Time.deltaTime;
-            Debug.Log(timer);
 
             if (timer >= timeToDisappearance)
             {

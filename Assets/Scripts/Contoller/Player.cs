@@ -70,6 +70,12 @@ public class Player : MonoBehaviour
         keyHouse = true;
     }
 
+    public void AddCoin(int value)
+    {
+        coin += value;
+        Trade?.Invoke();
+    }
+
     public void AddScissors()
     {
         scissors = true;
@@ -82,7 +88,6 @@ public class Player : MonoBehaviour
     public void AddPlant()
     {
         plant += 1;
-        Debug.Log(plant);
     }
     public void MinusSeed()
     {
@@ -97,31 +102,26 @@ public class Player : MonoBehaviour
     public void AddMilk()
     {
         milk += 1;
-        Debug.Log(Milk);
     }
 
     public void AddBowl()
     {
         bowl += 1;
-        Debug.Log(bowl);
     }
 
     public void AddWood()
     {
         wood += 1;
-        Debug.Log(wood);
     }
 
     public void AddAxe()
     {
         axe = true;
-        Debug.Log(axe);
     }
 
     public void AddFish()
     {
         fish += 1;
-        Debug.Log(fish);
     }
 
     public void MinusFish()
@@ -132,7 +132,6 @@ public class Player : MonoBehaviour
     public void AddBone()
     {
         bone += 1;
-        Debug.Log(bone);
     }
 
     public void AddFhishingRod()
@@ -152,6 +151,11 @@ public class Player : MonoBehaviour
     public void MinusBone()
     {
         bone -= 1;
+    }
+
+    public void MinusWood()
+    {
+        wood -= 3;
     }
 
     //Trade zone
@@ -175,6 +179,5 @@ public class Player : MonoBehaviour
         seed += 4;
         coin -= 20;
         Trade?.Invoke();
-        Debug.Log(seed);
     }
 }

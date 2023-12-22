@@ -24,8 +24,6 @@ public class UIMainMenu : MonoBehaviour
                 sceneList.Add(s);
             }
         }
-        Debug.Log(PlayerPrefs.GetFloat("1", 0));
-        Debug.Log(PlayerPrefs.GetFloat("2", 0));
     }
 
     public void Play()

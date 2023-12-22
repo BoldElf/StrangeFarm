@@ -51,13 +51,14 @@ public class RepairBridge : MonoBehaviour
                 {
                     startRepair = true;
                     repairSound.Play();
+                    player.MinusWood();
                     /*
                     timer = 0;
                     brokenBridge.SetActive(false);
                     bridge.SetActive(true);
                     */
                 }
-                if(player.Wood < 3)
+                else
                 {
                     buttonNoWood.SetActive(true);
                 }

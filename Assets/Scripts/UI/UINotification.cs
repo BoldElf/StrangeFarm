@@ -20,15 +20,12 @@ public class UINotification : MonoBehaviour
 
     public void setUi(string number,string material)
     {
+        if (number == "0" && material == "0") return;
         timer = 0;
         enabled = true;
         numberUI.text = number;
         materialUI.text = material;
         main.SetActive(true);
-    }
-    public void abc()
-    {
-
     }
 
     private void Update()

@@ -9,19 +9,34 @@ public class UITradeFish : MonoBehaviour
     [SerializeField] private GameObject noBone;
     [SerializeField] private GameObject noFish;
 
+    [SerializeField] private GameObject third;
+
+    [SerializeField] private int costOfScissors;
+
+    [SerializeField] private GameObject noCoinUI;
+
     private Trade trade;
 
     private void Start()
     {
         trade = tradeObject.GetComponentInChildren<Trade>();
-        trade.playerExit += trade_playerExit;
+        //trade.playerExit += trade_playerExit;
     }
 
+    /*
     private void trade_playerExit()
     {
-        noBone.SetActive(false);
-        noFish.SetActive(false);
+        if(noBone != null)
+        {
+            noBone.SetActive(false);
+        }
+        if(noFish != null)
+        {
+            noFish.SetActive(false);
+        }
+        
     }
+    */
 
     public void BoneOnBait()
     {
@@ -29,7 +44,6 @@ public class UITradeFish : MonoBehaviour
         {
             player.MinusBone();
             player.AddFhishingBait();
-            Debug.Log(player.Bait);
         }
         else
         {
@@ -38,13 +52,12 @@ public class UITradeFish : MonoBehaviour
         }
     }
 
-    public void FishOnWood()
+    public void FishOnCoin()
     {
         if(player.Fish >= 1)
         {
             player.MinusFish();
-            player.AddWood();
-            Debug.Log(player.Wood);
+            player.AddCoin(10);
         }
         else
         {
@@ -53,5 +66,29 @@ public class UITradeFish : MonoBehaviour
         }
     }
 
-    
+    public void BuyScissors()
+    {
+        if(player.Coin >= costOfScissors)
+        {
+            if(player.Scissors == false)
+            {
+                player.AddScissors();
+                player.AddCoin(-costOfScissors);
+            }
+            if(player.Scissors == true)
+            {
+                third.SetActive(false);
+            }
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            noCoinUI.SetActive(true);
+        }
+       
+        
+    }
+
+
+
 }

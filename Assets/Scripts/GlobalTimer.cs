@@ -11,7 +11,8 @@ public class GlobalTimer : MonoBehaviour
     private float timer;
    
     [SerializeField] private GameObject endPanel;
-    [SerializeField] private Text TextSecond;
+
+    [SerializeField] private Text textSecond;
 
     [SerializeField] private Player player;
 
@@ -27,16 +28,11 @@ public class GlobalTimer : MonoBehaviour
     [SerializeField] private int maxPlayerCoin;
     public int MaxPlayerCoin => maxPlayerCoin;
 
-    [SerializeField] private string number;
-
-    //[SerializeField] private EndPanelController endPanelController;
-
-    
-    
-
     public event UnityAction MinumTime;
     public event UnityAction NormTime;
     public event UnityAction MaxTime;
+
+    public event UnityAction endCoin;
 
 
     // Start is called before the first frame update
@@ -56,7 +52,7 @@ public class GlobalTimer : MonoBehaviour
         {
             endPanel.SetActive(true);
             Time.timeScale = 0;
-            TextSecond.text = StringTime.SecondToTimeString(timer);
+            textSecond.text = StringTime.SecondToTimeString(timer);
 
             if(PlayerPrefs.GetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), 100) > timer && minmumTime >= timer)
             {
@@ -81,6 +77,9 @@ public class GlobalTimer : MonoBehaviour
 
         if (player.Coin >= maxPlayerCoin)
         {
+
+            endCoin?.Invoke();
+            /*
             endPanel.SetActive(true);
             Time.timeScale = 0;
             TextSecond.text = StringTime.SecondToTimeString(timer);
@@ -88,6 +87,18 @@ public class GlobalTimer : MonoBehaviour
             {
                 PlayerPrefs.SetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), timer);
             }
+            */
+        }
+    }
+
+    public void setActiveText()
+    {
+        endPanel.SetActive(true);
+        Time.timeScale = 0;
+        textSecond.text = StringTime.SecondToTimeString(timer);
+        if (PlayerPrefs.GetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), 100) > timer)
+        {
+            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().buildIndex.ToString(), timer);
         }
     }
 }

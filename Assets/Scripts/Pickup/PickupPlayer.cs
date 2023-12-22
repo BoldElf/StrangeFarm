@@ -45,14 +45,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
 
     private void Start()
     {
-        /*
-        if(UINotificationPanel != null)
-        {
-            UINotification = UINotificationPanel.gameObject.GetComponent<UINotification>();
-        }
-        */
-        //UINotification.setUi("+1", "key"); !!!!
-        UINotification.setUi("+1", "idea");
+        UINotification.setUi(0.ToString(), 0.ToString());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -85,10 +78,8 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) == true && playerInCollider == true)
+        if (Input.GetKeyDown(KeyCode.E) == true && playerInCollider == true && player != null)
         {
-            
-
             if (thing == Thing.key)
             {
                 audioPickup.Play();
