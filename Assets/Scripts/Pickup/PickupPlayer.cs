@@ -32,14 +32,8 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
     public void Construct(UINotification obj) => UINotification = obj;
 
     public event UnityAction PlayerPickup;
+    //public event UnityAction SpawnPlus;
 
-    /*
-    public event UnityAction AddMilk;
-    public event UnityAction AddKeyHouse;
-    public event UnityAction AddSeedBag;
-    public event UnityAction AddPlant;
-    public event UnityAction AddBowl;
-    */
     private Player player;
     private bool playerInCollider = false;
 
@@ -80,8 +74,10 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
     {
         if (Input.GetKeyDown(KeyCode.E) == true && playerInCollider == true && player != null)
         {
+            
             if (thing == Thing.key)
             {
+                //SpawnPlus.Invoke();
                 audioPickup.Play();
                 player.AddKeyHouse();
                 button.SetActive(true);
@@ -91,6 +87,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
             }
             if (thing == Thing.seed)
             {
+                //SpawnPlus.Invoke();
                 audioPickup.Play();
                 player.AddSeedBag();
                 button.SetActive(true);
@@ -103,6 +100,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 PlantGrowth plantGrowth = GetComponent<PlantGrowth>();
                 if(plantGrowth != null && plantGrowth.PlantIsReady == true)
                 {
+                    //SpawnPlus.Invoke();
                     audioPickup.Play();
                     UINotification.setUi("+1", "plant");
                     player.AddPlant();
@@ -112,6 +110,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
             }
             if (thing == Thing.milk)
             {
+               //SpawnPlus.Invoke();
                 audioPickup.Play();
                 UINotification.setUi("+1", "milk");
                 player.AddMilk();
@@ -120,6 +119,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
             }
             if (thing == Thing.emptyMilk)
             {
+               //SpawnPlus.Invoke();
                 audioPickup.Play();
                 UINotification.setUi("+1", "container");
                 player.AddBowl();
@@ -131,6 +131,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 audioPickup.Play();
                 if(player.Axe == true)
                 {
+                    //SpawnPlus.Invoke();
                     player.AddWood();
                     UINotification.setUi("+1", "wood");
                     button.SetActive(true);
@@ -152,6 +153,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                     thing = Thing.zero;
                     return;
                 }
+                //SpawnPlus.Invoke();
                 audioPickup.Play();
                 UINotification.setUi("+1", "axe");
                 player.AddAxe();
@@ -160,6 +162,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
             }
             if(thing == Thing.fhish)
             {
+                //SpawnPlus.Invoke();
                 audioPickup.Play();
                 UINotification.setUi("+1", "fhish");
                 player.AddFish();
@@ -168,6 +171,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
             }
             if (thing == Thing.bone)
             {
+                //SpawnPlus.Invoke();
                 audioPickup.Play();
                 UINotification.setUi("+1", "bone");
                 player.AddBone();
@@ -176,6 +180,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
             }
             if(thing == Thing.fhishingRod)
             {
+                //SpawnPlus.Invoke();
                 audioPickup.Play();
                 UINotification.setUi("+1", "rod");
                 player.AddFhishingRod();
@@ -189,6 +194,8 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
                 {
                     player.AddFhishingBait();
                 }
+                //SpawnPlus.Invoke();
+                audioPickup.Play();
                 UINotification.setUi("+4", "bait");
                 thing = Thing.zero;
                 button.SetActive(true);
@@ -196,6 +203,7 @@ public class PickupPlayer : MonoBehaviour, IDependencies<UINotification>
             }
             if(thing == Thing.scissors)
             {
+                //SpawnPlus.Invoke();
                 audioPickup.Play();
                 UINotification.setUi("+1", "scissors");
                 player.AddScissors();

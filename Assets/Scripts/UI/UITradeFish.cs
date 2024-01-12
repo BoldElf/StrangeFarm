@@ -42,8 +42,9 @@ public class UITradeFish : MonoBehaviour
     {
         if(player.Bone >= 1)
         {
-            player.MinusBone();
-            player.AddFhishingBait();
+            //player.MinusBone();
+            //player.AddFhishingBait();
+            player.BoneOnBait();
         }
         else
         {
@@ -56,8 +57,9 @@ public class UITradeFish : MonoBehaviour
     {
         if(player.Fish >= 1)
         {
-            player.MinusFish();
-            player.AddCoin(10);
+            //player.MinusFish();
+            //player.AddCoin(10);
+            player.FishOnCoin();
         }
         else
         {
@@ -72,8 +74,9 @@ public class UITradeFish : MonoBehaviour
         {
             if(player.Scissors == false)
             {
-                player.AddScissors();
-                player.AddCoin(-costOfScissors);
+                //player.AddScissors();
+                //player.AddCoin(-costOfScissors);
+                player.BuyScissors(-costOfScissors);
             }
             if(player.Scissors == true)
             {

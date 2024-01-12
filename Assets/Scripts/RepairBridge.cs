@@ -15,7 +15,9 @@ public class RepairBridge : MonoBehaviour
 
     [SerializeField] private AudioSource repairSound;
 
-    [SerializeField] private int timeToRepair; 
+    [SerializeField] private int timeToRepair;
+
+    [SerializeField] private GameObject prefabSmoke;
 
     private float timer;
     private bool startRepair;
@@ -41,6 +43,8 @@ public class RepairBridge : MonoBehaviour
         }
     }
 
+    GameObject prefabSave;
+
     private void Update()
     {
         if (playerInCollider == true)
@@ -49,6 +53,8 @@ public class RepairBridge : MonoBehaviour
             {
                 if(player.Wood >= 3)
                 {
+                    prefabSave = Instantiate(prefabSmoke, gameObject.transform.root);
+
                     startRepair = true;
                     repairSound.Play();
                     player.MinusWood();
@@ -83,5 +89,6 @@ public class RepairBridge : MonoBehaviour
         timer = 0;
         brokenBridge.SetActive(false);
         bridge.SetActive(true);
+        //Destroy(prefabSave);
     }
 }
