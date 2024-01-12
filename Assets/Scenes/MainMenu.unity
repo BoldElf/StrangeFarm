@@ -836,7 +836,7 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 86b8ffa8bf8e04040974c06ccb364ed9, type: 2}
   audioS: {fileID: 1895980776}
   mixerParametr: _musicVolume
-  minimumVolume: -20
+  minimumVolume: -50
 --- !u!1 &495326621
 GameObject:
   m_ObjectHideFlags: 0
